@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Login</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../js/script.js"></script>
+	<script src="../js/vue.js"></script>
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script language="javascript" type="text/javascript">
+	
+ function fun(){
+	  
+	 var name=document.getElementById("username").value;
+	 var pass=document.getElementById("password").value;
+	 if("哈哈"==name && "123"==pass){
+		
+		   window.open('index.html');
+		   window.close();
+	 }else{
+		alert("用户名或密码不正确，请重新输入！")
+				
+	 }
+ }
+	</script>
+	<link href="../css/style.css" rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+<!-- onclick="javascript:window.location.href='../html/index.html'" -->
+	<!--SIGN UP-->
+	<h1>登陆助飞教学管理系统</h1>
+	<div class="login-form">
+
+		<div class="clear"> </div>
+		<div class="avtar">
+			<img src="../img/zhufei2.jpg" class="img-circle" style="width: 60px;height: 60px;" />
+		</div>
+		<form id="loginForm">
+			<input type="text" class="text" id="username" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}">
+			<div class="key">
+				<input type="password" id="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+			</div>
+			<div class="signin">
+				<input type="submit" value="Login" onclick="fun()" >
+			</div>
+		</form>
+		
+	</div>
+	<div class="copy-rights">
+		<p>Copyright &copy; 2018.Company name All rights reserved.More Templates
+			<a href="" title="孙大圣">孙大圣</a> - Collect from
+			<a href="http://www.bestvike.com/" title="bestvike" target="_blank">Bestvike</a>
+		</p>
+	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="send()">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						登陆失败
+					</h4>
+				</div>
+				<div class="modal-body alert-danger">
+					用户名或密码不正确，请重新输入！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+</body>
+
+</html>

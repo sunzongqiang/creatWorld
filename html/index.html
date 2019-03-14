@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>教学管理系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../js/script.js"></script>
+	<script src="../js/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<!-- 头部 -->
+		<div class="page-header bg-success">
+			<div class="row">
+			<img src="../img/logn.png" class="img-circle col-sm-4 col-sm-offset-1" style="width: 130px;height:100px; margin-top: 10px ;margin-right: 20px; "
+			/>
+			<h1 class="col-sm-4" style="">教学管理系统
+				<br />
+				<small>用心教育，未来！</small>
+			</h1>
+
+			<div class="btn-group col-sm-3" style="float: right;margin-right: 10%;margin-top: 50px;">
+				<button type="button" class="btn btn-success glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modifyPass">修改登陆密码 </button>
+				<button type="button" class="btn btn-warning glyphicon glyphicon-plane" data-toggle="modal" data-target="#confim">退出系统</button>
+			</div>
+			</div>
+			<div class="row">
+				<!-- 导航栏 -->
+					
+					<ul id="myTab" class="nav nav-tabs" style="margin-top:20px; margin-left: 10%;">
+						<li class="active ">
+							<a href="#home" data-toggle="tab" class="glyphicon glyphicon-home">
+								主页
+							</a>
+						</li>
+						<li>
+							<a href="#stuInfoManage" data-toggle="tab" class="glyphicon glyphicon-user">
+								学生管理
+							</a>
+						</li>
+						<li>
+							<a href="#stuInfoManage" data-toggle="tab" class="glyphicon glyphicon-user">
+								招生管理
+							</a>
+						</li>
+						<li>
+							<a href="#teacherInfoManage" data-toggle="tab" class="glyphicon glyphicon-heart-empty">
+								教师管理
+							</a>
+						</li>
+			
+						<li class="dropdown">
+							<a href="#" id="myTabDrop1" class="dropdown-toggle glyphicon glyphicon-tasks" data-toggle="dropdown">
+								课程管理
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+								<li>
+									<a href="#courseInfoManage" tabindex="-1" data-toggle="tab">
+										数学课</a>
+								</li>
+								<li>
+									<a href="#courseInfoManage" tabindex="-1" data-toggle="tab">
+										语文课</a>
+								</li>
+								<li>
+									<a href="#courseInfoManage" tabindex="-1" data-toggle="tab">
+										English</a>
+								</li>
+							</ul>
+						</li>
+			
+						<li>
+							<a href="#courseInfoManage" data-toggle="tab" class="glyphicon glyphicon-calendar">
+								课程表管理
+							</a>
+						</li>
+						<li class="dropdown">
+							<a href="#" id="myTabDrop2" class="dropdown-toggle glyphicon glyphicon-book" data-toggle="dropdown">图书管理
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+								<li>
+									<a href="#bookInfoManage" tabindex="-1" data-toggle="tab">
+										科幻</a>
+								</li>
+								<li>
+									<a href="#bookInfoManage" tabindex="-1" data-toggle="tab">
+										文学</a>
+								</li>
+								<li>
+									<a href="#bookInfoManage" tabindex="-1" data-toggle="tab">
+										科普</a>
+								</li>
+								<li>
+									<a href="#bookInfoManage" tabindex="-1" data-toggle="tab">
+										数学</a>
+								</li>
+								<li>
+									<a href="#bookInfoManage" tabindex="-1" data-toggle="tab">
+										英语</a>
+								</li>
+								<li>
+									<a href="#bookInfoManage" tabindex="-1" data-toggle="tab">
+										动漫</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#aimsInfoManage" data-toggle="tab" class="glyphicon glyphicon-flag">
+								目标管理
+							</a>
+						</li>
+						<li>
+							<a href="#memorandumInfoManage" data-toggle="tab" class="glyphicon glyphicon-tags">
+								备忘录管理
+							</a>
+						</li>
+						<li>
+							<a href="#moneyInfoManage" data-toggle="tab" class="glyphicon glyphicon-euro">
+								资金管理
+							</a>
+						</li>
+						<li class="dropdown">
+							<a href="#" id="myTabDrop1" class="dropdown-toggle glyphicon glyphicon-tasks" data-toggle="dropdown">
+								小游戏
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+								<li>
+									<a href="#6174" tabindex="-1" data-toggle="tab">
+										6174黑洞</a>
+								</li>
+								<li>
+									<a href="#shenfenzheng" tabindex="-1" data-toggle="tab">
+										身份证信息自动提取</a>
+								</li>
+								<li>
+									<a href="#sushu" tabindex="-1" data-toggle="tab">
+										0-10^8内的素数</a>
+								</li>
+							</ul>
+						</li>
+			
+					</ul>
+			</div>		
+		</div>
+
+	
+		<!-- 导航栏连接的内容块 -->
+		<div id="myTabContent" class="tab-content container">
+			<!--游戏模块-->
+			<div class="jumbotron tab-pane " id="6174" style="margin:50px 100px;">
+				
+				<div class="container"  >
+				<div class="row">
+				<div class="col-md-7">
+					<h3>6174黑洞！</h3>
+					<div class="row">
+						<div class="col-md-5">
+						<label for="nums">请输入一个不全一样的5位以下的数：</label>
+						</div>
+						<div class="col-md-5"><input id="nums" type="number" maxlength="4" v-model="num" required="required" class="form-control" /></div>
+						<div class="col-md-2"><button class="btn btn-info glyphicon glyphicon-eye-open " @click="change(num)">走起</button></div>
+					</div>
+
+
+						</div>
+				<div class="col-md-5" v-show="show">
+					<table class="table table-hover table-striped">
+							<caption class="text-center">
+								<h3>步骤列表</h3>
+							</caption>
+							<tbody>
+								<tr v-for="item in arry">
+									<td>{{item}}</td>
+
+								</tr>
+							</tbody>
+					
+					</table>
+				</div>
+				</div>
+				</div>
+			</div>
+			<div class="jumbotron tab-pane " id="sushu" style="margin:50px 100px;">
+				<div class="container"  >
+					<div class="row">
+						<div class="col-md-3">
+							<h3>0-10^8内的素数！</h3>
+							<button class="btn btn-success" @click="isFun('1')">开始</button>
+						</div>
+						<div class="col-md-9" v-show="shows">
+							<h3>步骤列表</h3>
+							<span>{{sushus}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="jumbotron tab-pane " id="shenfenzheng" style="margin:50px 100px;">
+				
+				<div class="container"  >
+				<div class="row">
+				<div class="col-md-7">
+					<h3>身份证信息自动提取</h3>
+					<div class="row">
+						<div class="col-md-4">
+						<label>请输入身份证号：</label>
+						</div>
+						<div class="col-md-6"><input type="text" maxlength="18" v-model="card" required="required" class="form-control" onkeydown="onKeyDown(event)"/></div>
+						<div class="col-md-2"><button class="btn btn-info glyphicon glyphicon-eye-open " @click="isCardNo(card)">走起</button></div>
+					</div>
+
+
+						</div>
+				<div class="col-md-5" v-show="show1">
+					<table class="table table-hover table-striped">
+							<caption class="text-center">
+								<h3>信息列表</h3>
+							</caption>
+							<thead>
+						<tr>
+						
+							<th>
+								姓名
+							</th>
+							<th>
+								性别
+							</th>
+							<th>
+								生日
+							</th>
+							<th>
+								年龄
+							</th>
+							<th>
+								籍贯
+							</th>
+							
+
+						</tr>
+					</thead>
+							<tbody>
+								<tr>
+									<td>{{name}}</td>
+									<td>{{sex}}</td>
+									<td>{{birthday}}</td>
+									<td>{{age}}</td>
+									<td>{{city}}</td>
+
+								</tr>
+							</tbody>
+					
+					</table>
+				</div>
+				</div>
+				</div>
+			</div>
+			<!-- 主页内容块 -->
+			<div class="jumbotron tab-pane fade in active" id="home">
+
+				<h1>欢迎登陆教学管理系统！</h1>
+				<p>牢记我们的宗旨：用心教育，未来！</p>
+				<p>这里是一个帮助孩子们放飞梦想的园地！</p>
+
+				<div id="myCarousel" class="carousel slide" style="width: 612px;height: 408px;">
+					<!-- 轮播（Carousel）指标 -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+					</ol>
+					<!-- 轮播（Carousel）项目 -->
+					<div class="carousel-inner">
+						<div class="item active">
+							<img src="../img/1.jpg" alt="First slide">
+						</div>
+						<div class="item">
+							<img src="../img/2.jpg" alt="Second slide">
+						</div>
+						<div class="item">
+							<img src="../img/3.jpg" alt="Third slide">
+						</div>
+						<div class="item">
+							<img src="../img/4.jpg" alt="Third slide">
+						</div>
+					</div>
+					<!-- 轮播（Carousel）导航 -->
+					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+			<!-- 学生管理主页 -->
+			<div class="tab-pane fade " id="stuInfoManage">
+				<!-- 学生搜索框 -->
+				<div class="row" id="so" style="margin-top:10px;">
+					<div class="input-group col-sm-4">
+						<input type="text" class="form-control"/>
+						<span class="input-group-addon">
+							<a href="#">
+								<i class="glyphicon glyphicon-search">
+									<span>搜索  </span>
+								</i>
+							</a>
+						</span>
+					</div>
+					<!-- 学生管理操作按钮组 -->
+					<div class="btn-group col-sm-5" style="float: right;margin-top: -35px;">
+						<div class="row">
+
+							<button type="button" class=" col-sm-3 btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target="#addStu">添加学生信息</button>
+
+							<button type="button" class="col-sm-3 btn btn-info glyphicon glyphicon-eye-open " data-toggle="modal" data-target="#queryStu">查看学生详情</button>
+
+							<button type="button" class="col-sm-3 btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modifyStu">修改学生信息</button>
+
+							<button type="button" class="col-sm-3 btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#delStu">删除学生信息</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- 学生管理主体显示信息 -->
+
+
+				<table class="table table-hover table-striped">
+					<caption class="text-center">
+						<h1>学生信息管理</h1>
+					</caption>
+
+					<thead>
+						<tr>
+							<th>
+								#
+							</th>
+
+							<th>
+								学号
+							</th>
+							<th>
+								姓名
+							</th>
+							<th>
+								年龄
+							</th>
+							<th>
+								性别
+							</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="student in students">
+							<td>
+								<input type="checkbox" />
+							</td>
+							<td>{{student.number}}</td>
+							<td>{{student.name}}</td>
+							<td>{{student.age}}</td>
+							<td>{{student.sex}}</td>
+
+						</tr>
+					</tbody>
+				</table>
+
+
+				<!-- 学生管理分页 -->
+				<div style="margin-top:20px;margin-right:200px;float: right;">
+					<ul class="pagination">
+						<li>
+							<a href="#">&laquo;</a>
+						</li>
+						<li>
+							<a href="#">1</a>
+						</li>
+						<li>
+							<a href="#">2</a>
+						</li>
+						<li>
+							<a href="#">3</a>
+						</li>
+						<li>
+							<a href="#">4</a>
+						</li>
+						<li>
+							<a href="#">5</a>
+						</li>
+						<li>
+							<a href="#">&raquo;</a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- 添加学生弹窗 -->
+				<div class="modal fade" id="addStu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-plus" id="myModalLabel">
+									添加学生信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="stuName" class="col-sm-2 control-label">姓名</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" id="stuName" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="sex" class="col-sm-2 control-label">性别</label>
+										<div class="col-sm-10">
+											男
+											<input type="radio" name="sex" value="男" /> 女
+											<input type="radio" name="sex" value="女" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="age" class="col-sm-2 control-label">年龄</label>
+										<div class="col-sm-4">
+											<input type="number" class="form-control" id="age" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="schoolName" class="col-sm-2 control-label">学校</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="schoolName" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="schoolLever" class="col-sm-2 control-label">年级</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" id="schoolLever" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="brife" class="col-sm-2 control-label">情况简介</label>
+										<div class="col-sm-8">
+											<textarea class="form-control" id="brife"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="hobby" class="col-sm-2 control-label">个人爱好</label>
+										<div class="col-sm-8">
+											<label class="checkbox-inline">
+												<input type="checkbox" id="inlineCheckbox1" value="文学"> 文学
+											</label>
+											<label class="checkbox-inline">
+												<input type="checkbox" id="inlineCheckbox2" value="影视">影视
+											</label>
+											<label class="checkbox-inline">
+												<input type="checkbox" id="inlineCheckbox3" value="音乐"> 音乐
+											</label>
+											<label class="checkbox-inline">
+												<input type="checkbox" id="inlineCheckbox3" value="体育"> 体育
+											</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="parentName" class="col-sm-2 control-label">家长姓名</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" id="parentName" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="phone" class="col-sm-2 control-label">家长电话</label>
+										<div class="col-sm-6">
+											<input type="tel" class="form-control" id="phone" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="address" class="col-sm-2 control-label">家庭住址</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" id="address" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="createDate" class="col-sm-2 control-label">入学时间</label>
+										<div class="col-sm-6">
+											<input type="date" class="form-control" id="createDate" />
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-warning">
+									重置
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 查看学生弹窗 -->
+				<div class="modal fade bs-example-modal-lg" id="queryStu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" style="width:1000px;">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-eye-open" id="myModalLabel">
+									查看学生信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<div class="col-sm-10 column col-sm-offset-1">
+									<table class="table table-hover table-striped">
+										<thead>
+											<tr>
+												<th>
+													学号
+												</th>
+												<th>
+													姓名
+												</th>
+												<th>
+													年龄
+												</th>
+												<th>
+													性别
+												</th>
+												<th>
+													学号
+												</th>
+												<th>
+													姓名
+												</th>
+												<th>
+													年龄
+												</th>
+												<th>
+													性别
+												</th>
+												<th>
+													电话
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="student in students">
+												<td>{{student.number}}</td>
+												<td>{{student.name}}</td>
+												<td>{{student.age}}</td>
+												<td>{{student.sex}}</td>
+												<td>{{student.number}}</td>
+												<td>{{student.name}}</td>
+												<td>{{student.age}}</td>
+												<td>{{student.sex}}</td>
+												<td>{{student.tel}}</td>
+
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 修改学生弹窗 -->
+				<div class="modal fade" id="modifyStu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-pencil" id="myModalLabel">
+									修改学生信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="stuName" class="col-sm-2 control-label">姓名</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control stuName" v-model="stuName" control-label name="stuName" id="stuName" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="sex" class="col-sm-2 control-label">性别</label>
+										<div class="col-sm-10">
+											男
+											<input type="radio" name="sex" value="男" /> 女
+											<input type="radio" name="sex" value="女" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="age" class="col-sm-2 control-label">年龄</label>
+										<div class="col-sm-4">
+											<input type="number" class="form-control" id="age" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="schoolName" class="col-sm-2 control-label">学校</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="schoolName" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="schoolLever" class="col-sm-2 control-label">年级</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" id="schoolLever" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="brife" class="col-sm-2 control-label">情况简介</label>
+										<div class="col-sm-8">
+											<textarea class="form-control" id="brife"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="hobby" class="col-sm-2 control-label">个人爱好</label>
+										<div class="col-sm-8">
+											<label class="checkbox-inline">
+												<input type="checkbox" id="inlineCheckbox1" value="文学"> 文学
+											</label>
+											<label class="checkbox-inline">
+												<input type="checkbox" id="inlineCheckbox2" value="影视">影视
+											</label>
+											<label class="checkbox-inline">
+												<input type="checkbox" id="inlineCheckbox3" value="音乐"> 音乐
+											</label>
+											<label class="checkbox-inline">
+												<input type="checkbox" id="inlineCheckbox3" value="体育"> 体育
+											</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="parentName" class="col-sm-2 control-label">家长姓名</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" id="parentName" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="phone" class="col-sm-2 control-label">家长电话</label>
+										<div class="col-sm-6">
+											<input type="tel" class="form-control" id="phone" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="address" class="col-sm-2 control-label">家庭住址</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" id="address" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="createDate" class="col-sm-2 control-label">入学时间</label>
+										<div class="col-sm-6">
+											<input type="date" class="form-control" id="createDate" />
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 删除学生弹窗 -->
+				<div class="modal fade" id="delStu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-trash" id="myModalLabel">
+									删除学生信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<p class="alert alert-warning">
+									<strong>提示！</strong>删除操作将会修改学生状态！
+								</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-ok">
+									确定
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+
+			</div>
+			<!-- 教师管理主页 -->
+			<div class="tab-pane fade " id="teacherInfoManage">
+				<!-- 教师管理搜索框 -->
+				<div class="row" id="so" style="margin-top:10px;">
+					<div class="input-group col-sm-4">
+						<input type="text" class="form-control" onkeydown="onKeyDown(event)" />
+						<span class="input-group-addon">
+							<a href="#">
+								<i class="glyphicon glyphicon-search">
+									<span>搜索  </span>
+								</i>
+							</a>
+						</span>
+					</div>
+					<!-- 教师管理操作按钮组 -->
+					<div class="btn-group col-sm-5" style="float: right;margin-top: -35px;">
+						<div class="row">
+							<button type="button" class="col-sm-3 btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target="#addTea">添加教师信息</button>
+							<button type="button" class="col-sm-3 btn btn-info glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#queryTea">查看教师详情</button>
+							<button type="button" class="col-sm-3 btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modifyTea">修改教师信息</button>
+							<button type="button" class="col-sm-3 btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#delTea">删除教师信息</button>
+						</div>
+					</div>
+				</div>
+				<!-- 教师管理主体显示信息 -->
+				<div>
+
+					<table class="table table-hover table-striped">
+						<caption class="text-center">
+							<h1>教师信息管理</h1>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>
+									#
+								</th>
+
+								<th>
+									工号
+								</th>
+								<th>
+									姓名
+								</th>
+								<th>
+									年龄
+								</th>
+								<th>
+									性别
+								</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="student in students">
+								<td>
+									<input type="checkbox" />
+								</td>
+								<td>{{student.number}}</td>
+								<td>{{student.name}}</td>
+								<td>{{student.age}}</td>
+								<td>{{student.sex}}</td>
+
+							</tr>
+						</tbody>
+					</table>
+
+
+					<div style="margin-top:20px;margin-right:200px;float: right;">
+						<ul class="pagination">
+							<li>
+								<a href="#">&laquo;</a>
+							</li>
+							<li>
+								<a href="#">1</a>
+							</li>
+							<li>
+								<a href="#">2</a>
+							</li>
+							<li>
+								<a href="#">3</a>
+							</li>
+							<li>
+								<a href="#">4</a>
+							</li>
+							<li>
+								<a href="#">5</a>
+							</li>
+							<li>
+								<a href="#">&raquo;</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- 添加教师弹窗 -->
+				<div class="modal fade" id="addTea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-plus" id="myModalLabel">
+									添加教师信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 查看教室弹窗 -->
+				<div class="modal fade" id="queryTea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-eye-open" id="myModalLabel">
+									查看教师信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 修改教师弹窗 -->
+				<div class="modal fade" id="modifyTea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-pencil" id="myModalLabel">
+									修改教师信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 删除教师弹窗 -->
+				<div class="modal fade" id="delTea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-trash" id="myModalLabel">
+									删除教师信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-ok">
+									确定
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+
+			</div>
+			<!-- 课程管理主页 -->
+			<div class="tab-pane fade " id="courseInfoManage">
+				<!-- 课程搜索框 -->
+				<div class="row" id="so" style="margin-top:10px;">
+					<div class="input-group col-sm-4">
+						<input type="text" class="form-control" onkeydown="onKeyDown(event)" />
+						<span class="input-group-addon">
+							<a href="#">
+								<i class="glyphicon glyphicon-search">
+									<span>搜索  </span>
+								</i>
+							</a>
+						</span>
+					</div>
+					<!-- 课程管理操作按钮组 -->
+					<div class="btn-group col-sm-5" style="float: right;margin-top: -35px;">
+						<div class="row">
+							<button type="button" class="col-sm-3 btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target="#addCou">添加课程信息</button>
+							<button type="button" class="col-sm-3 btn btn-info glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#queryCou">查看课程详情</button>
+							<button type="button" class="col-sm-3 btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modifyCou">修改课程信息</button>
+							<button type="button" class="col-sm-3 btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#delCou">删除课程信息</button>
+						</div>
+					</div>
+				</div>
+				<!-- 课程管理主体显示信息 -->
+				<div>
+
+					<table class="table table-hover table-striped">
+						<caption class="text-center">
+							<h1>课程信息管理</h1>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>
+									#
+								</th>
+
+								<th>
+									学号
+								</th>
+								<th>
+									姓名
+								</th>
+								<th>
+									年龄
+								</th>
+								<th>
+									性别
+								</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="student in students">
+								<td>
+									<input type="checkbox" />
+								</td>
+								<td>{{student.number}}</td>
+								<td>{{student.name}}</td>
+								<td>{{student.age}}</td>
+								<td>{{student.sex}}</td>
+
+							</tr>
+						</tbody>
+					</table>
+
+
+					<div style="margin-top:20px;margin-right:200px;float: right;">
+						<ul class="pagination">
+							<li>
+								<a href="#">&laquo;</a>
+							</li>
+							<li>
+								<a href="#">1</a>
+							</li>
+							<li>
+								<a href="#">2</a>
+							</li>
+							<li>
+								<a href="#">3</a>
+							</li>
+							<li>
+								<a href="#">4</a>
+							</li>
+							<li>
+								<a href="#">5</a>
+							</li>
+							<li>
+								<a href="#">&raquo;</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- 添加课程弹窗 -->
+				<div class="modal fade" id="addCou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-plus" id="myModalLabel">
+									添加课程信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 查看课程弹窗 -->
+				<div class="modal fade" id="queryCou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-eye-open" id="myModalLabel">
+									查看课程信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 修改课程弹窗 -->
+				<div class="modal fade" id="modifyCou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-pencil" id="myModalLabel">
+									修改学生信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 删除课程弹窗 -->
+				<div class="modal fade" id="delCou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-trash" id="myModalLabel">
+									删除课程信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-ok">
+									确定
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+
+			</div>
+			<!-- 图书管理主页 -->
+			<div class="tab-pane fade " id="bookInfoManage">
+				<!-- 图书搜索框 -->
+				<div class="row" id="so" style="margin-top:10px;">
+					<div class="input-group col-sm-4">
+						<input type="text" class="form-control" onkeydown="onKeyDown(event)" />
+						<span class="input-group-addon">
+							<a href="#">
+								<i class="glyphicon glyphicon-search">
+									<span>搜索  </span>
+								</i>
+							</a>
+						</span>
+					</div>
+					<!-- 图书管理操作按钮组 -->
+					<div class="btn-group col-sm-5" style="float: right;margin-top: -35px;">
+						<div class="row">
+							<button type="button" class="col-sm-3 col-sm-offset-6 btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target="#addBook">添加图书信息</button>
+							<button type="button" class="col-sm-3 btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#delBook">删除图书信息</button>
+						</div>
+					</div>
+				</div>
+				<!-- 图书管理主体显示信息 -->
+				<div>
+					<h1 style="text-align: center;">图书管理</h1>
+					<div class="row " style="margin-top:20px; ">
+						<div v-for="student in students" class="panel panel-default col-sm-3 ">
+
+							<div class="panel-heading">
+
+								<h3 class="panel-title glyphicon glyphicon-book ">
+									<input type="checkbox" style="margin-left: 10px;" /> 编号：{{student.number}} 书名：{{student.name}}
+								</h3>
+							</div>
+							<div class="panel-body">
+								<img v-bind:src="student.img" />
+								<h4 style="display: inline;">书名：{{student.name}}</h4>
+								<br />
+								<strong>作者：{{student.name}}，性别：{{student.sex}}</strong>
+								<br />
+								<p>出版时间：{{student.age}}</p>
+								<p> 内容：{{student.brife}}</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- 添加图书弹窗 -->
+				<div class="modal fade" id="addBook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-plus" id="myModalLabel">
+									添加图书信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+
+				<!-- 删除图书弹窗 -->
+				<div class="modal fade" id="delBook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-trash" id="myModalLabel">
+									删除图书信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-ok">
+									确定
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+
+			</div>
+			<!-- 目标管理主页 -->
+			<div class="tab-pane fade " id="aimsInfoManage">
+				<!-- 目标搜索框 -->
+				<div class="row" id="so" style="margin-top:10px;">
+					<div class="input-group col-sm-4">
+						<input type="text" class="form-control" onkeydown="onKeyDown(event)" />
+						<span class="input-group-addon">
+							<a href="#">
+								<i class="glyphicon glyphicon-search">
+									<span>搜索  </span>
+								</i>
+							</a>
+						</span>
+					</div>
+					<!-- 目标管理操作按钮组 -->
+					<div class="btn-group col-sm-5" style="float: right;margin-top: -35px;">
+						<div class="row">
+							<button type="button" class="col-sm-3 btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target="#addAim">添加目标信息</button>
+							<button type="button" class="col-sm-3 btn btn-info glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#queryAim">查看目标详情</button>
+							<button type="button" class="col-sm-3 btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modifyAim">修改目标信息</button>
+							<button type="button" class="col-sm-3 btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#delAim">删除目标信息</button>
+
+						</div>
+					</div>
+				</div>
+				<!-- 目标管理主体显示信息 -->
+				<div class="row ">
+					<h1 style="text-align: center;">目标管理</h1>
+
+					<div>
+						<div>
+							<h2 style="text-align: left">目标完成进度对照表</h2>
+							<div class="progress">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+								    style="width: 100%;">
+									<span>已完成目标！（你真棒！）</span>
+								</div>
+							</div>
+							<div class="progress progress-striped">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+								    style="width: 90%;">
+									<span>已完成90%（还差一点！）</span>
+								</div>
+							</div>
+							<div class="progress progress-striped">
+								<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+									<span>已完成60%（再坚持！）</span>
+								</div>
+							</div>
+							<div class="progress progress-striped">
+								<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+								    style="width: 30%;">
+									<span>已完成30% （坚持！）</span>
+								</div>
+							</div>
+							<div class="progress progress-striped">
+								<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+								    style="width: 10%;">
+									<span>已完成10%（刚开始！）</span>
+								</div>
+							</div>
+						</div>
+						<div v-for="student in students" class="panel panel-default col-sm-3 ">
+
+							<div class="panel-heading ">
+
+								<h3 class="panel-title  ">
+									<span class="glyphicon glyphicon-flag"></span>
+									<input type="checkbox" style="margin-left: 10px;" /> {{student.number}}.{{student.name}}
+
+									<div :class="'progress'+' '+student.unsuccessprogressbarstyle">
+										<div :class="'progress-bar'+' '+'progress-bar-'+student.progressbarstyle" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+										    aria-valuemax="100" :style="'width:' + student.progress + '%'">
+										</div>
+									</div>
+								</h3>
+							</div>
+							<div class="panel-body">
+								年龄：{{student.age}}，性别：{{student.sex}}
+								<br /> 内容：{{student.brife}}
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- 添加目标弹窗 -->
+				<div class="modal fade" id="addAim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-plus" id="myModalLabel">
+									添加目标信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 查看目标弹窗 -->
+				<div class="modal fade" id="queryAim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-eye-open" id="myModalLabel">
+									查看目标信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 修改目标弹窗 -->
+				<div class="modal fade" id="modifyAim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-pencil" id="myModalLabel">
+									修改目标信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 删除目标弹窗 -->
+				<div class="modal fade" id="delAim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-trash" id="myModalLabel">
+									删除目标信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-ok">
+									确定
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+
+			</div>
+			<!-- 备忘录管理主页 -->
+			<div class="tab-pane fade " id="memorandumInfoManage">
+				<!-- 备忘录搜索框 -->
+				<div class="row" id="so" style="margin-top:10px;">
+					<div class="input-group col-sm-4">
+						<input type="text" class="form-control" onkeydown="onKeyDown(event)" />
+						<span class="input-group-addon">
+							<a href="#">
+								<i class="glyphicon glyphicon-search">
+									<span>搜索  </span>
+								</i>
+							</a>
+						</span>
+					</div>
+					<!-- 备忘录管理操作按钮组 -->
+					<div class="btn-group col-sm-5" style="float: right; margin-top: -35px;">
+						<div class="row">
+							<button type="button" class="col-sm-4  btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target="#addMemorandum">添加备忘录信息</button>
+							<button type="button" class="col-sm-4 btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modifyMemorandum">修改备忘录信息</button>
+							<button type="button" class="col-sm-4 btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#delMemorandum">删除备忘录信息</button>
+						</div>
+					</div>
+				</div>
+				<!-- 备忘录管理主体显示信息 -->
+				<div>
+					<h1 style="text-align: center;">备忘录管理</h1>
+
+					<div>
+						<h2 style="text-align: left">备忘录重要程度对照表</h2>
+						<div class="row">
+							<div class="col-sm-5">
+								<div class="progress">
+									<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+									    style="width: 100%;">
+										<span>最重要的事！</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-5 col-sm-offset-1">
+								<div class="progress">
+									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+									    style="width: 100%;">
+										<span>重要的事！</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5">
+								<div class="progress">
+									<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+										<span>近期要做的事</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-5 col-sm-offset-1">
+								<div class="progress">
+									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+									    style="width: 100%;">
+										<span>不太重要的事</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+					<div class="row ">
+						<div v-for="student in students" class="panel panel-default col-sm-3 ">
+
+							<div class="panel-heading ">
+
+								<span class="glyphicon glyphicon-flag"></span>
+
+								<input type="checkbox" style="margin-left: 10px;" /> {{student.number}}.{{student.name}}
+								<div class="progress">
+									<div :class="'progress-bar'+' '+'progress-bar-'+student.important " role="progressbar" aria-valuenow="60" aria-valuemin="0"
+									    aria-valuemax="100" style="width:100%">
+									</div>
+								</div>
+
+							</div>
+							<div class="panel-body">
+								<h4 style="display: inline;">对象：{{student.name}}</h4>
+								<br />
+								<strong>事项：{{student.name}}，性别：{{student.sex}}</strong>
+								<br />
+								<p>时间：{{student.age}}</p>
+								<p> 内容：{{student.brife}}</p>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- 添加备忘录弹窗 -->
+				<div class="modal fade" id="addMemorandum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-plus" id="myModalLabel">
+									添加备忘录信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 修改备忘录弹窗 -->
+				<div class="modal fade" id="modifyMemorandum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-pencil" id="myModalLabel">
+									修改备忘录信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+									保存
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 删除备忘录弹窗 -->
+				<div class="modal fade" id="delMemorandum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title glyphicon glyphicon-trash" id="myModalLabel">
+									删除备忘录信息
+								</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="inputPassword3" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-ok">
+									确定
+								</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+			</div>
+			<!-- 资金管理主页 -->
+						<div class="tab-pane fade " id="moneyInfoManage">
+							<!-- 资金管理搜索框 -->
+							<div class="row" id="so" style="margin-top:10px;">
+								<div class="input-group col-sm-4">
+									<input type="month" class="form-control" onkeydown="onKeyDown(event)" />
+									<span class="input-group-addon">
+										<a href="#">
+											<i class="glyphicon glyphicon-search">
+												<span>搜索  </span>
+											</i>
+										</a>
+									</span>
+								</div>
+								<!-- 资金管理操作按钮组 -->
+								<div class="btn-group col-sm-5" style="float: right;margin-top: -35px;">
+									<div class="row">
+										<button type="button" class="col-sm-3 btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target="#addMoney">添加资金信息</button>
+										<button type="button" class="col-sm-3 btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modifyMoney">修改资金信息</button>
+										<button type="button" class="col-sm-3 btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#delMoney">删除资金信息</button>
+									</div>
+								</div>
+							</div>
+							<!-- 资金管理主体显示信息 -->
+							<div>
+			
+								<table class="table table-hover table-striped">
+									<caption class="text-center">
+										<h1>资金信息管理</h1>
+									</caption>
+									<thead>
+										<tr>
+											<th>
+												#
+											</th>
+											<th>
+												时间
+											</th>
+											<th class="bg-success">
+												收入金额
+											</th>
+											<th>
+												收入来源
+											</th>
+											<th class="bg-warning">
+												支出金额
+											</th>
+											<th>
+												支出去向
+											</th>
+			
+										</tr>
+									</thead>
+									<tbody>
+										<tr v-for="student in students">
+											<td>
+												<input type="checkbox" />
+											</td>
+											
+											<td>{{student.name}}</td>
+											<td class="bg-success">{{student.age}}</td>
+											<td>{{student.sex}}</td>
+											<td class="bg-warning">{{student.age}}</td>
+											<td>{{student.sex}}</td>
+			
+										</tr>
+										
+											
+											
+												
+												
+											
+										
+									</tbody>
+								</table>
+			<div class="row" style="font-size: large;"><span class="col-sm-4 bg-success">总收入：3271902351945元</span><span class="col-sm-4 bg-warning">总支出：34768975954元</span><span class="col-sm-4 bg-danger"> 余额：10000000000.00元</span>  </div>
+			
+								<div style="margin-top:20px;margin-right:200px;float: right;">
+									<ul class="pagination">
+										<li>
+											<a href="#">&laquo;</a>
+										</li>
+										<li>
+											<a href="#">1</a>
+										</li>
+										<li>
+											<a href="#">2</a>
+										</li>
+										<li>
+											<a href="#">3</a>
+										</li>
+										<li>
+											<a href="#">4</a>
+										</li>
+										<li>
+											<a href="#">5</a>
+										</li>
+										<li>
+											<a href="#">&raquo;</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- 添加资金弹窗 -->
+							<div class="modal fade" id="addMoney" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+																&times;
+															</button>
+															<h4 class="modal-title glyphicon glyphicon-plus" id="myModalLabel">
+																添加资金信息
+															</h4>
+														</div>
+														<div class="modal-body">
+															<form class="form-horizontal" role="form">
+																<div class="form-group">
+																	<label for="moneyDate" class="col-sm-2 control-label">时间</label>
+																	<div class="col-sm-8">
+																		<input type="date" class="form-control" id="moneyDate" />
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label for="moneyCome" class="col-sm-2 control-label">收入金额</label>
+																	<div class="col-sm-8">
+																		
+																		<input type="number" name="moneyCome"  />
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label for="moneyComeBrife" class="col-sm-2 control-label">收入来源</label>
+																	<div class="col-sm-8">
+																		<textarea class="form-control" id="brife" name="moneyComeBrife" > </textarea>
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label for="moneyOut" class="col-sm-2 control-label">支出金额</label>
+																	<div class="col-sm-8">
+																		
+																		<input type="number" name="moneyOut"  />
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label for="moneyOutBrife" class="col-sm-2 control-label">支出去向</label>
+																	<div class="col-sm-8">
+																		<textarea class="form-control" id="brife" name="moneyOutBrife" > </textarea>
+																	</div>
+																</div>
+															</form>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+															</button>
+															<button type="button" class="btn btn-warning">
+																重置
+															</button>
+															<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+																保存
+															</button>
+														</div>
+													</div>
+													<!-- /.modal-content -->
+												</div>
+												<!-- /.modal -->
+											</div>
+							<!-- 修改资金弹窗 -->
+							<div class="modal fade" id="modifyMoney" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+																&times;
+															</button>
+															<h4 class="modal-title glyphicon glyphicon-plus" id="myModalLabel">
+																添加资金信息
+															</h4>
+														</div>
+														<div class="modal-body">
+															<form class="form-horizontal" role="form">
+																<div class="form-group">
+																	<label for="moneyDate" class="col-sm-2 control-label">时间</label>
+																	<div class="col-sm-8">
+																		<input type="date" class="form-control" id="moneyDate" />
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label for="moneyCome" class="col-sm-2 control-label">收入金额</label>
+																	<div class="col-sm-8">
+																		
+																		<input type="number" name="moneyCome"  />
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label for="moneyComeBrife" class="col-sm-2 control-label">收入来源</label>
+																	<div class="col-sm-8">
+																		<textarea class="form-control" id="brife" name="moneyComeBrife" > </textarea>
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label for="moneyOut" class="col-sm-2 control-label">支出金额</label>
+																	<div class="col-sm-8">
+																		
+																		<input type="number" name="moneyOut"  />
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label for="moneyOutBrife" class="col-sm-2 control-label">支出去向</label>
+																	<div class="col-sm-8">
+																		<textarea class="form-control" id="brife" name="moneyOutBrife" > </textarea>
+																	</div>
+																</div>
+															</form>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+															</button>
+															<button type="button" class="btn btn-warning">
+																重置
+															</button>
+															<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+																保存
+															</button>
+														</div>
+													</div>
+													<!-- /.modal-content -->
+												</div>
+												<!-- /.modal -->
+											</div>
+							
+							<!-- 删除资金弹窗 -->
+							<div class="modal fade" id="delMoney" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title glyphicon glyphicon-trash" id="myModalLabel">
+												删除资金信息
+											</h4>
+										</div>
+										<div class="modal-body">
+											<p class="alert alert-warning">
+												<strong>提示！</strong>您确定要删除该条资金记录吗？
+											</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+											</button>
+											<button type="button" class="btn btn-primary glyphicon glyphicon-ok">
+												确定
+											</button>
+										</div>
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal -->
+							</div>
+			
+						</div>
+						
+			<!-- 修改登录密码弹窗 -->
+			<div class="modal fade" id="modifyPass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title glyphicon glyphicon-pencil" id="myModalLabel">
+								修改登录密码
+							</h4>
+						</div>
+						<div class="modal-body">
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<label for="stuName" class="col-sm-2 control-label">原密码</label>
+									<div class="col-sm-4">
+										<input type="password" class="form-control" id="passpword" name="passpword" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="stuName" class="col-sm-2 control-label">新密码</label>
+									<div class="col-sm-4">
+										<input type="password" class="form-control" id="newPasspword" name="newPasspword" />
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">关闭
+							</button>
+							<button type="button" class="btn btn-primary glyphicon glyphicon-save">
+								保存
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+			<!-- 退出系统确认弹窗 -->
+			<div class="modal fade" id="confim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								确认退出系统
+							</h4>
+						</div>
+						<div class="modal-body">
+							<p class="alert alert-danger">
+								<strong>主人！</strong>你真的要离开我吗？
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-success" data-dismiss="modal">留下陪你
+							</button>
+
+							<a type="button" href="login.html" class="btn btn-danger" onclick="doSubmit();">我得走了</a>
+
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
